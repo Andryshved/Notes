@@ -22,7 +22,7 @@ vector<Note> readStructVectorFromFile(const string& filename) {
   if (file.is_open()) {
     string line;
     while (getline(file, line)) {
-      size_t pos = line.find(",");
+      size_t pos = line.find("|");
       if (pos != string::npos) {
         string title = line.substr(0, pos);
         string content = line.substr(pos + 1);
@@ -107,7 +107,7 @@ void writeStructVectorToFile(const vector<Note>& vec, const string& filename) {
   ofstream file(filename);
   if (file.is_open()) {
     for (const auto& s : vec) {
-      file << s.title << "," << s.content << "\n";
+      file << s.title << "|" << s.content << "\n";
     }
     file.close();
   } else {
